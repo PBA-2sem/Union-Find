@@ -5,32 +5,42 @@
  */
 package implementations;
 
-import interfaces.IUnionFind;
+public class QuickUnion {
 
-/**
- *
- * @author stanislavnovitski
- */
-public class QuickUnion implements IUnionFind {
+    private int[] id;
+    private String lastUnion = "";
 
-    @Override
+    public QuickUnion(int N) {
+        id = new int[N];
+        for (int i = 0; i < N; i++) {
+            id[i] = i;
+        }
+    }
+
+    private int root(int i) {
+        while (i != id[i]) {
+            i = id[i];
+        }
+        return i;
+    }
+
+    public boolean find(int p, int q) {
+        return root(p) == root(q);
+    }
+
     public void union(int p, int q) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        lastUnion = String.format("|%d -> %d| ", p, q);
+        int i = root(p);
+        int j = root(q);
+        id[i] = j;
     }
-
     @Override
-    public int find(int p) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public String toString() {
+        String output = lastUnion;
+        for(int i = 0; i < id.length; i++) {
+            output += id[i] + " ";
+        }
+        return output;
     }
-
-    @Override
-    public boolean connected(int p, int q) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public int count() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
 }
+
