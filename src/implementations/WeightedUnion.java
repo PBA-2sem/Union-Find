@@ -5,32 +5,44 @@
  */
 package implementations;
 
-import interfaces.IUnionFind;
+public class WeightedUnion {
 
-/**
- *
- * @author stanislavnovitski
- */
-public class WeightedUnion implements IUnionFind{
+    private int[] tree;
+    private String lastUnion = "";
 
-    @Override
+    public WeightedUnion(int N) {
+        tree = new int[N];
+        for (int i = 0; i < N; i++) {
+            tree[i] = i;
+        }
+    }
+
+    private int root(int i) {
+        while (i != tree[i]) {
+            tree[i] = tree[tree[i]]; // the only difference from QuickUinon implementation
+            i = tree[i];
+        }
+        return i;
+    }
+
+    public boolean find(int p, int q) {
+        return root(p) == root(q);
+    }
+
     public void union(int p, int q) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public int find(int p) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean connected(int p, int q) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public int count() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        lastUnion = String.format("|%d -> %d| ", p, q);
+        int i = root(p);
+        int j = root(q);
+        tree[i] = j;
     }
     
+    @Override
+    public String toString() {
+        String output = lastUnion;
+        for(int i = 0; i < tree.length; i++) {
+            output += tree[i] + " ";
+        }
+        return output;
+    }
 }
+

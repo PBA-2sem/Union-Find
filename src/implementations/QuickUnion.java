@@ -7,19 +7,19 @@ package implementations;
 
 public class QuickUnion {
 
-    private int[] id;
+    private int[] tree;
     private String lastUnion = "";
 
     public QuickUnion(int N) {
-        id = new int[N];
+        tree = new int[N];
         for (int i = 0; i < N; i++) {
-            id[i] = i;
+            tree[i] = i;
         }
     }
 
     private int root(int i) {
-        while (i != id[i]) {
-            i = id[i];
+        while (i != tree[i]) {
+            i = tree[i];
         }
         return i;
     }
@@ -32,15 +32,17 @@ public class QuickUnion {
         lastUnion = String.format("|%d -> %d| ", p, q);
         int i = root(p);
         int j = root(q);
-        id[i] = j;
+        tree[i] = j;
     }
     @Override
     public String toString() {
         String output = lastUnion;
-        for(int i = 0; i < id.length; i++) {
-            output += id[i] + " ";
+        for(int i = 0; i < tree.length; i++) {
+            output += tree[i] + " ";
         }
         return output;
     }
+    
+    
 }
 
