@@ -10,7 +10,7 @@ public class Main {
      */
     public static void main(String[] args) {
         QuickUnion qu = new QuickUnion(7);
-        System.out.println("Initial state of tree: " + qu);
+        System.out.println("Initial state of tree: \n-------->" + qu);
         qu.union(2, 5);
         System.out.println(qu);
         qu.union(2, 3);
@@ -23,7 +23,7 @@ public class Main {
         System.out.println("-------------------------------------");
         
         WeightedUnion wu = new WeightedUnion(7);
-        System.out.println("Initial state of tree: " + wu);
+        System.out.println("Initial state of tree: \n-------->" + wu);
         wu.union(2, 5);
         System.out.println(wu);
         wu.union(2, 3);
