@@ -6,7 +6,11 @@ Code sources are from in-class discussions & demonstrations, as well as online r
 
 ## How to Run
 
-Run Main.java to get a visualization of both algorithms in console.
+- Run Main.java to get a visualization of both algorithms in console.
+
+or
+
+- Run Junit tests for the project
 
 ## Author Ressources/Notes
 [Everything about UnionFind](http://www.bowdoin.edu/~ltoma/teaching/cs231/fall14/Material/UnionFind.pdf)
