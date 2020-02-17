@@ -1,10 +1,13 @@
 package implementations;
 
-public class WeightedUnion {
+import interfaces.IUnionFind;
+
+public class WeightedUnion implements IUnionFind {
 
     private int[] tree;
     private int[] size;
     private String lastUnion = "";
+    private int count;
 
     public WeightedUnion(int N) {
         tree = new int[N];
@@ -13,35 +16,32 @@ public class WeightedUnion {
             tree[i] = i;
             size[i] = 1;
         }
+        count = N;
     }
 
-    private int root(int i) {
-        while (i != tree[i]) {
-            tree[i] = tree[tree[i]];
-            i = tree[i];
+    @Override
+    public int root(int p) {
+        while (p != tree[p]) {
+            p = tree[p];
         }
-        return i;
+        return p;
     }
 
-    public boolean find(int p, int q) {
-        return root(p) == root(q);
-    }
-
+    @Override
     public void union(int p, int q) {
         lastUnion = String.format("|%d -> %d| ", p, q);
-        int root1 = root(p);
-        int root2 = root(q);
-
-//        tree[root1] = root2;
-        //Point smaller root to larger one
-        if (size[root1] < size[root2]) {
-            tree[root1] = root2;
-        } else if (size[root1] > size[root2]) {
-            tree[root2] = root1;
+        int i = root(p);
+        int j = root(q);
+        if (i == j) {
+            return;
+        }
+        // Make smaller root point to larger one.
+        if (size[i] < size[j]) {
+            tree[i] = j;
+            size[j] += size[i];
         } else {
-            // same size, then make root1 one size larger
-            tree[root2] = root1;
-            size[root1]++;
+            tree[j] = i;
+            size[i] += size[j];
         }
     }
 
@@ -52,5 +52,15 @@ public class WeightedUnion {
             output += tree[i] + " ";
         }
         return output;
+    }
+
+    @Override
+    public boolean connected(int p, int q) {
+        return root(p) == root(q);
+    }
+
+    @Override
+    public int count() {
+        return count;
     }
 }

@@ -9,29 +9,50 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        QuickUnion qu = new QuickUnion(7);
+        QuickUnion qu = new QuickUnion(10);
+        System.out.println("----------------QUICK---------------------");
         System.out.println("Initial state of tree: \n-------->" + qu);
-        qu.union(2, 5);
+        qu.union(3, 4);
+        System.out.println(qu);
+        qu.union(4, 9);
+        System.out.println(qu);
+        qu.union(8, 0);
         System.out.println(qu);
         qu.union(2, 3);
         System.out.println(qu);
-        qu.union(1, 5);
+        qu.union(5, 6);
         System.out.println(qu);
-        qu.union(6, 2);
+        qu.union(5, 9);
         System.out.println(qu);
-        
-        System.out.println("-------------------------------------");
-        
-        WeightedUnion wu = new WeightedUnion(7);
+        qu.union(7, 3);
+        System.out.println(qu);
+        qu.union(4, 8);
+        System.out.println(qu);
+        qu.union(6, 1);
+        System.out.println(qu);
+
+        System.out.println("----------------WEIGHTED---------------------");
+
+        WeightedUnion wu = new WeightedUnion(10);
         System.out.println("Initial state of tree: \n-------->" + wu);
-        wu.union(2, 5);
+        wu.union(3, 4);
+        System.out.println(wu);
+        wu.union(4, 9);
+        System.out.println(wu);
+        wu.union(8, 0);
         System.out.println(wu);
         wu.union(2, 3);
         System.out.println(wu);
-        wu.union(1, 5);
+        wu.union(5, 6);
         System.out.println(wu);
-        wu.union(6, 2);
+        wu.union(5, 9);
+        System.out.println(wu);
+        wu.union(7, 3);
+        System.out.println(wu);
+        wu.union(4, 8);
+        System.out.println(wu);
+        wu.union(6, 1);
         System.out.println(wu);
     }
-    
+
 }

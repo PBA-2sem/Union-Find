@@ -27,13 +27,13 @@ public class FirstFind implements IUnionFind {
     }
 
     @Override
-    public int find(int p) {
+    public int root(int p) {
         return pointSets[p];
     }
 
     @Override
     public boolean connected(int p, int q) {
-        return this.find(p) == this.find(q);
+        return this.root(p) == this.root(q);
     }
 
     @Override
